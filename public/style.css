@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#user-status {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 1.3rem;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+#log-in-status {
+  margin-right: 10px;
+}
+#user-name {
+  margin-right: 10px;
+}

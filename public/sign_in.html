@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <title>登录页</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    p {
+      font-size: 2em;
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+
+<body>
+  <p>登录页</p>
+  <form id="sign-in-form">
+    <div>
+      <label for="POST-name">用户名：</label>
+      <input id="POST-name" type="text" name="user">
+    </div>
+    <div>
+      <label for="POST-password">密码：</label>
+      <input id="POST-password" type="password" name="password">
+    </div>
+    <div>
+      <button type="submit">提交</button>
+    </div>
+  </form>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    const $form = $('#sign-in-form');
+    $form.on('submit', (e) => {
+      e.preventDefault();
+      const name = $('#POST-name').val();
+      const password = $('#POST-password').val();
+      const userData = JSON.stringify({ name, password });
+      $.ajax({
+        type: "POST",
+        url: "/sign_in",
+        data: userData,
+        contentType: "text/html; charset=UTF-8"
+      }).then(() => {
+        alert('登陆成功！');
+        location.href = '/home.html';
+      }, () => {});
+    })
+  </script>
+</body>
+
+</html>
