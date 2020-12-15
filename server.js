@@ -32,7 +32,6 @@ var server = http.createServer(function (request, response) {
     try {
       sessionId = cookie.match(/session_id=[\d\.]+/)[0].split("=")[1];
     } catch {}
-    console.log(session[sessionId]);
     //使用session文件，在服务器端完成读取信息的任务
     if (sessionId && session[sessionId]) {
       //上面的判断存在很重要,用户如果篡改cookie则不会继续
@@ -63,8 +62,9 @@ var server = http.createServer(function (request, response) {
     const array = [];
     request.on("data", (chunk) => {
       array.push(chunk);
-    });
+    });   //以Buffer二进制传入数据
     request.on("end", () => {
+      // Buffer.concat将二进制转义并从数组中取出
       const string = Buffer.concat(array).toString();
       const obj = JSON.parse(string);
       const user = userArray.find(
